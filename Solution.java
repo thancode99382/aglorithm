@@ -1,32 +1,37 @@
+import java.sql.Array;
+import java.util.ArrayList;
+import java.util.Arrays;
+
 class Solution {
-    public int binarySearch(int[] nums, int target) {
+     public int[] plusOne(int[] digits) {
+            
+            for (int i = digits.length - 1 ; i >=0 ; i--) {
+                    if( digits[i] <9){
+                            digits[i]++; 
+                            return digits;
+                    }
 
-        int l = 0;
-        int r = nums.length - 1;
-        
+                    digits[i] = 0;
+            }
 
-        while (l <= r) {
-           int mid = (l + r) / 2;
-            if (target == nums[mid]) {
-                return mid;
-            }
-            if (target > nums[mid]) {
-                l = mid + 1;
-            } else {
-                r = mid - 1;
-            }
-        }
-        return l;
+
+
+            int[] result = new int[digits.length + 1];
+             result[0] = 1;
+
+             return result;
+
     }
 
     public static void main(String[] args) {
-        int[] nums = { 1, 3, 5, 6 };
-        int target = 2;
+        int[] digits = { 9,9,9 };
 
         Solution solution = new Solution();
-        int result = solution.binarySearch(nums, target);
+        int[] result = solution.plusOne(digits);
 
-        System.out.println(result);
+        System.out.println(Arrays.toString(result));
+
+        
 
     }
 }
