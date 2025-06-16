@@ -2,36 +2,68 @@ import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+class ListNode {
+        int val;
+        ListNode next;
+
+        ListNode() {
+        }
+
+        ListNode(int val) {
+                this.val = val;
+        }
+
+        ListNode(int val, ListNode next) {
+                this.val = val;
+                this.next = next;
+        }
+}
+
 class Solution {
-     public int[] plusOne(int[] digits) {
-            
-            for (int i = digits.length - 1 ; i >=0 ; i--) {
-                    if( digits[i] <9){
-                            digits[i]++; 
-                            return digits;
-                    }
+        public static ListNode deleteDuplicates(ListNode head) {
+                ListNode temp = head;
+                while (temp != null && temp.next != null) {
 
-                    digits[i] = 0;
-            }
+                        if (temp.val == temp.next.val) {
+                                temp.next = temp.next.next;
+                        } else {
+                                temp = temp.next;
+                        }
 
+                }
+                return head;
+        }
 
+        public static void printList(ListNode head) {
 
-            int[] result = new int[digits.length + 1];
-             result[0] = 1;
+                ListNode temp = head;
 
-             return result;
+                while (temp != null) {
+                        System.out.print(temp.val);
+                        if (temp.next != null) {
+                                System.out.print("->");
+                        }
 
-    }
+                        temp = temp.next;
 
-    public static void main(String[] args) {
-        int[] digits = { 9,9,9 };
+                }
 
-        Solution solution = new Solution();
-        int[] result = solution.plusOne(digits);
+        }
 
-        System.out.println(Arrays.toString(result));
+        public static void main(String[] args) {
 
-        
+                ListNode n1 = new ListNode(1);
+                ListNode n2 = new ListNode(1);
+                ListNode n3 = new ListNode(1);
+                // ListNode n4 = new ListNode(3);
+                // ListNode n5 = new ListNode(3);
+                n1.next = n2;
+                n2.next = n3;
+                // n3.next = n4;
+                // n4.next = n5;
 
-    }
+                // Solution solution = new Solution();
+                // solution.deleteDuplicates()
+                printList(deleteDuplicates(n1));
+        }
 }
