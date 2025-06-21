@@ -20,26 +20,26 @@ import java.util.Arrays;
 // }
 
 class Solution {
-        public static String addBinary(String a, String b) {
-                        StringBuilder sb = new StringBuilder();
-                       int i = a.length() - 1;
-                       int j = b.length() - 1;
-                       int carry = 0;
-                       
-                       while(i>=0 || j >=0){
-                                int sum = carry;
-                                if(i >= 0) sum += a.charAt(i) - '0';
-                                if(j >= 0) sum += b.charAt(j) - '0';
-                                sb.append(sum % 2);
-                                carry = sum / 2;
+        public static int mySqrt(int x) {
+                if (x < 2)
+                        return x;
+                int l = 0;
+                int r = x;
+                 
+                while (l <= r) {
+                        int mid = l + (r - l) / 2;
+                        long squart = (long) mid * mid;                 
+                        if (squart == x) {
+                                return mid;
+                        }
 
-                                i--;
-                                j--;
-                       }
-
-                       if(carry != 0) sb.append(carry);
-
-                       return sb.reverse().toString();
+                        if (squart > x) {
+                                r = mid - 1;
+                        } else {
+                                l = mid + 1;
+                        }
+                }
+                return r;
 
         }
 
@@ -75,9 +75,7 @@ class Solution {
                 // solution.deleteDuplicates()
                 // printList(deleteDuplicates(n1));
 
-
-                System.out.println(addBinary("11","1"));
-                        // System.out.println(0 + '1');
+                System.out.println(mySqrt(8));
 
         }
 }
